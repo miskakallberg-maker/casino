@@ -1,0 +1,37 @@
+{
+  "2yn3x": {
+    "password": "fe6cdecd89390f3701e30f68f07ae8810e8499c7252c3b9cd53d02b80c6d6341",
+    "balance": 3806,
+    "createdAt": "2026-03-18T19:08:25.130Z",
+    "bonusBalance": 100,
+    "stats": {
+      "totalBet": 9801016131,
+      "totalWin": 997801,
+      "gamesPlayed": 221,
+      "timeSpent": 0,
+      "loginTime": 1774373303882
+    },
+    "depositDisabled": false,
+    "withdrawDisabled": false,
+    "dlBalance": 0,
+    "bglBalance": 0
+  },
+  "Punahilkka": {
+    "password": "fe6cdecd89390f3701e30f68f07ae8810e8499c7252c3b9cd53d02b80c6d6341",
+    "balance": 44449000,
+    "bonusBalance": 0,
+    "banned": false,
+    "createdAt": "2026-03-20T21:15:45.736Z",
+    "stats": {
+      "totalBet": 35000000,
+      "totalWin": 79449000,
+      "gamesPlayed": 24,
+      "timeSpent": 0,
+      "loginTime": 1774373655668
+    },
+    "depositDisabled": false,
+    "withdrawDisabled": false,
+    "dlBalance": 0,
+    "bglBalance": 1000
+  }
+}
