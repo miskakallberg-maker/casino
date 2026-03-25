@@ -284,6 +284,55 @@
             filter: brightness(1.1);
         }
 
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            background: var(--site-color-bg-dark);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            z-index: 1001;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu button {
+            display: block;
+            width: 100%;
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            color: var(--site-color-text);
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+
+        .mobile-menu button:hover {
+            background: var(--site-color-bg-light);
+        }
+
+        .mobile-menu button:last-child {
+            border-bottom: none;
+            color: var(--site-color-danger);
+        }
+
+        .mobile-menu-btn {
+            display: none !important;
+        }
+
+        .desktop-only {
+            display: inline-flex;
+        }
+
         .btn-success {
             background: var(--site-color-success);
             color: #1c1e22;
@@ -304,10 +353,22 @@
             display: flex;
             min-height: calc(100vh - var(--site-header-height));
             margin-top: var(--site-header-height);
+            padding-left: var(--site-chat-width);
         }
 
-        /* Chat Sidebar */
+        /* Chat Sidebar - Always on Left */
         .chat-sidebar {
+            position: fixed;
+            top: var(--site-header-height);
+            left: 0;
+            bottom: 0;
+            width: var(--site-chat-width);
+            background: var(--site-color-bg-dark);
+            border-right: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
             width: var(--site-chat-width);
             background: var(--site-color-bg-dark);
             border-right: 1px solid rgba(255, 215, 0, 0.1);
@@ -1337,154 +1398,211 @@
             padding: 0 20px;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
+        /* ============================================
+           MOBILE CLEAN DESIGN - 768px and below
+           ============================================ */
+        @media (max-width: 768px) {
+            /* Base Mobile Reset */
+            body {
+                font-size: 14px;
             }
 
-            .chat-sidebar {
-                transform: translateX(-100%);
-                z-index: 200;
-            }
-
-            .chat-sidebar.show {
-                transform: translateX(0);
-            }
-
-            .chat-toggle {
-                display: flex;
+            /* Header - Clean & Minimal */
+            .header {
+                padding: 0 16px;
+                height: 56px;
+                background: rgba(23, 24, 26, 0.98) !important;
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 215, 0, 0.1);
             }
 
             .header-logo h1 {
-                font-size: 18px;
-            }
-
-            .game-card {
-                min-width: 140px;
-                padding: 20px;
-            }
-
-            .dice-number {
-                font-size: 80px;
-            }
-
-            .limbo-multiplier {
-                font-size: 60px;
-            }
-
-            .bj-card {
-                width: 60px;
-                height: 84px;
-                font-size: 20px;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 25px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 0 10px;
-                height: 50px;
-            }
-
-            .header h1 {
-                font-size: 16px;
+                font-size: 16px !important;
+                letter-spacing: 1px;
             }
 
             .header-actions {
                 gap: 8px;
             }
 
+            /* Balance - Compact */
             .balance-display {
-                padding: 5px 8px;
+                background: rgba(255, 215, 0, 0.1);
+                border: 1px solid rgba(255, 215, 0, 0.2);
+                border-radius: 20px;
+                padding: 6px 12px;
                 font-size: 12px;
+                font-weight: 600;
             }
 
+            .balance-display span:first-child {
+                display: none;
+            }
+
+            /* Buttons */
             .btn-small {
-                padding: 6px 10px;
+                padding: 6px 12px;
                 font-size: 11px;
+                border-radius: 6px;
             }
 
+            .desktop-only {
+                display: none !important;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex !important;
+                padding: 8px 14px !important;
+                font-size: 12px !important;
+                border-radius: 8px;
+            }
+
+            /* Mobile Menu - Clean Dropdown */
+            .mobile-menu {
+                top: 60px;
+                right: 10px;
+                width: 200px;
+                background: rgba(28, 30, 34, 0.98);
+                border: 1px solid rgba(255, 215, 0, 0.15);
+                border-radius: 12px;
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu button {
+                padding: 14px 16px;
+                font-size: 14px;
+                color: #fff;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .mobile-menu button:last-child {
+                color: #f87171;
+            }
+
+            /* Main Content - Full Width */
             .main-content {
-                padding: 60px 10px 20px;
+                padding: 70px 16px 90px;
+                min-height: 100vh;
             }
 
+            /* Navigation - Horizontal Scroll */
             .nav-tabs {
+                display: flex;
                 gap: 6px;
                 overflow-x: auto;
-                flex-wrap: nowrap;
-                padding-bottom: 10px;
+                padding: 12px 0;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .nav-tabs::-webkit-scrollbar {
+                display: none;
             }
 
             .nav-tab {
-                padding: 8px 12px;
-                font-size: 11px;
+                padding: 10px 16px;
+                font-size: 12px;
+                border-radius: 8px;
                 white-space: nowrap;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .nav-tab.active {
+                background: #ffd700;
+                color: #1c1e22;
+                border-color: #ffd700;
+            }
+
+            /* Stats Grid - 2 Columns */
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
             }
 
             .stat-card {
-                padding: 15px;
+                padding: 16px;
+                border-radius: 12px;
+                background: rgba(28, 30, 34, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .stat-card .value {
-                font-size: 24px;
+                font-size: 20px;
+                font-weight: 700;
             }
 
+            /* Cards - Clean Look */
             .card {
-                padding: 15px;
+                padding: 20px;
+                border-radius: 14px;
+                background: rgba(28, 30, 34, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                margin-bottom: 16px;
             }
 
-            table {
-                font-size: 11px;
-            }
-
-            th, td {
-                padding: 10px 5px;
-            }
-
-            .dice-info {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            /* Auth View Mobile */
+            /* Auth View - Centered Login */
             .auth-container {
                 padding: 20px;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .auth-container .card {
-                padding: 20px;
-            }
-
-            .auth-container input {
-                padding: 12px;
-                font-size: 16px;
+                width: 100%;
+                max-width: 320px;
+                padding: 28px 24px;
+                border-radius: 16px;
             }
 
             .auth-container h1 {
                 font-size: 24px !important;
+                letter-spacing: 2px !important;
+                margin-bottom: 8px !important;
             }
 
-            /* Game Cards Mobile */
+            .auth-container p {
+                font-size: 12px;
+                margin-bottom: 20px !important;
+            }
+
+            .auth-container input {
+                padding: 14px 16px;
+                font-size: 15px;
+                border-radius: 10px;
+                margin-bottom: 12px;
+                background: rgba(36, 38, 43, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .auth-container input:focus {
+                border-color: #ffd700;
+                outline: none;
+            }
+
+            /* Game Selection - 2 Column Grid */
             .game-selection {
-                gap: 10px;
-                justify-content: center;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 24px;
             }
 
             .game-card {
-                width: 150px;
-                height: 170px;
-                padding: 15px;
+                aspect-ratio: 1;
+                width: 100%;
+                padding: 16px;
+                border-radius: 16px;
+                background: rgba(28, 30, 34, 0.9);
+                border: 1px solid rgba(255, 215, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                transition: all 0.3s;
             }
 
             .game-card .icon {
@@ -1493,109 +1611,259 @@
 
             .game-card h3 {
                 font-size: 14px;
+                font-weight: 600;
             }
 
             .game-card p {
                 font-size: 10px;
+                color: #888;
             }
 
-            /* Game Modal Mobile */
+            /* Game Modals - Full Screen Feel */
+            .game-modal {
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+            }
+
             .game-modal-content {
-                padding: 15px;
+                padding: 20px;
                 margin: 10px;
                 width: calc(100% - 20px);
-                max-height: 85vh;
+                max-height: 92vh;
+                border-radius: 20px;
+                overflow-y: auto;
+            }
+
+            .game-modal-header {
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .game-modal-header h2 {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .game-modal-close {
-                width: 30px;
-                height: 30px;
-                font-size: 16px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                font-size: 20px;
+                background: rgba(255, 255, 255, 0.1);
             }
 
-            /* Dice Mobile */
+            /* Dice Game */
             .dice-result {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
+                margin: 0 auto 20px;
+                border-radius: 50%;
+                background: rgba(28, 30, 34, 0.9);
+                border: 3px solid rgba(255, 215, 0, 0.3);
             }
 
             .dice-number {
-                font-size: 64px;
+                font-size: 56px;
+                font-weight: 700;
             }
 
-            /* Limbo Mobile */
-            .limbo-container {
-                padding: 15px;
+            .dice-info {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 20px;
             }
 
+            .dice-slider {
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            /* Limbo Game */
             .limbo-multiplier {
                 font-size: 48px;
+                font-weight: 700;
             }
 
-            /* Mines Mobile */
-            .mines-grid {
+            .limbo-presets {
+                display: grid;
                 grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .limbo-presets button {
+                padding: 12px 8px;
+                font-size: 11px;
+                border-radius: 8px;
+            }
+
+            /* Mines Game */
+            .mines-grid {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
+                margin: 16px 0;
+            }
+
+            .mine-tile {
+                aspect-ratio: 1;
+                border-radius: 10px;
+                font-size: 16px;
+            }
+
+            .mine-count-row .presets {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
                 gap: 6px;
             }
 
-            /* Blackjack Mobile */
+            /* Blackjack */
             .bj-table {
-                padding: 10px;
+                padding: 16px;
+                border-radius: 12px;
+                margin-bottom: 16px;
             }
 
             .bj-hand {
-                gap: 5px;
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
-            /* Chat Mobile */
+            .bj-card {
+                width: 50px;
+                height: 70px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+
+            .bj-buttons {
+                display: flex;
+                gap: 10px;
+            }
+
+            .bj-buttons .btn {
+                flex: 1;
+                padding: 14px;
+                font-size: 13px;
+                border-radius: 10px;
+            }
+
+            /* Quick Bet Buttons */
+            .quick-bets {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .quick-bets button {
+                padding: 12px 8px;
+                font-size: 12px;
+                border-radius: 8px;
+                background: rgba(255, 215, 0, 0.1);
+                border: 1px solid rgba(255, 215, 0, 0.2);
+            }
+
+            /* Main Bet Button */
+            .btn-primary {
+                padding: 16px;
+                font-size: 15px;
+                font-weight: 700;
+                border-radius: 12px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* Chat - Slide from Left */
             .chat-sidebar {
-                width: 100%;
-                height: 50%;
-                bottom: 0;
-                top: auto;
+                width: 85%;
+                max-width: 300px;
+                z-index: 1001;
+                background: rgba(23, 24, 26, 0.98);
             }
 
             .chat-toggle {
-                display: flex;
+                position: fixed;
+                bottom: 24px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                font-size: 22px;
+                background: linear-gradient(135deg, #ffd700, #b8860b);
+                color: #1c1e22;
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+                z-index: 999;
             }
 
-            /* Profile Mobile */
+            /* Modals - Deposit/Withdraw */
+            .modal-content {
+                margin: 16px;
+                padding: 24px;
+                width: calc(100% - 32px);
+                border-radius: 20px;
+            }
+
+            .modal h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Inputs */
+            input, textarea {
+                padding: 14px 16px;
+                font-size: 15px;
+                border-radius: 10px;
+                background: rgba(36, 38, 43, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 12px;
+            }
+
+            input:focus, textarea:focus {
+                border-color: #ffd700;
+                outline: none;
+            }
+
+            /* Tables */
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+
+            /* Profile */
             .profile-info {
                 gap: 10px;
             }
 
             .profile-field {
-                padding: 10px;
+                padding: 14px;
+                border-radius: 10px;
+                background: rgba(36, 38, 43, 0.5);
             }
 
-            /* Buttons Mobile */
-            .btn {
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-
-            .quick-bets {
-                flex-wrap: wrap;
-            }
-
-            .quick-bets button {
-                padding: 8px 12px;
-                font-size: 12px;
+            /* Main Layout */
+            .main-layout {
+                padding-left: 0;
             }
         }
 
+        /* Extra Small Screens - 480px and below */
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 14px;
+            .header-logo h1 {
+                font-size: 14px !important;
+            }
+
+            .game-selection {
+                gap: 10px;
             }
 
             .game-card {
-                width: 130px;
-                height: 150px;
+                padding: 12px;
             }
 
             .game-card .icon {
@@ -1614,8 +1882,42 @@
                 grid-template-columns: 1fr;
             }
 
-            .nav-tabs {
-                justify-content: flex-start;
+            .dice-result {
+                width: 120px;
+                height: 120px;
+            }
+
+            .dice-number {
+                font-size: 48px;
+            }
+
+            .limbo-multiplier {
+                font-size: 40px;
+            }
+
+            .limbo-presets {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .mines-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            .mine-tile {
+                font-size: 14px;
+            }
+
+            .quick-bets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bj-buttons {
+                flex-direction: column;
+            }
+
+            .bj-buttons .btn {
+                width: 100%;
             }
         }
     </style>
@@ -1626,13 +1928,13 @@
     <!-- Auth View -->
     <div id="auth-view" class="auth-container">
         <div class="card" style="text-align:center;">
-            <h1 style="color:#ffd700;font-size:32px;margin-bottom:5px;text-shadow:0 0 40px rgba(255,215,0,0.6), 0 0 80px rgba(255,215,0,0.3);letter-spacing:3px;animation:logoGlow 2s ease-in-out infinite alternate;">GROWBLOCK</h1>
-            <p style="color:#888;margin-bottom:25px;">Premium Casino</p>
-            <div id="login-error" class="error hidden" style="padding:10px;border-radius:8px;background:rgba(248,113,113,0.1);"></div>
-            <input type="text" id="login-user" placeholder="Username" style="margin-bottom:10px;">
-            <input type="password" id="login-pass" placeholder="Password" style="margin-bottom:10px;">
-            <button class="btn btn-primary" onclick="doLogin()" style="width:100%;padding:15px;font-size:16px;">Sign In</button>
-            <button class="btn" onclick="doRegister()" style="width:100%;margin-top:10px;padding:15px;background:transparent;border:2px solid #ffd700;color:#ffd700;">Create Account</button>
+            <h1 style="color:#ffd700;font-size:32px;margin-bottom:8px;text-shadow:0 0 40px rgba(255,215,0,0.6), 0 0 80px rgba(255,215,0,0.3);letter-spacing:3px;animation:logoGlow 2s ease-in-out infinite alternate;">GROWBLOCK</h1>
+            <p style="color:#888;margin-bottom:24px;font-size:13px;">Premium Casino</p>
+            <div id="login-error" class="error hidden" style="padding:12px;border-radius:10px;background:rgba(248,113,113,0.15);margin-bottom:16px;font-size:13px;"></div>
+            <input type="text" id="login-user" placeholder="Username" style="margin-bottom:12px;">
+            <input type="password" id="login-pass" placeholder="Password" style="margin-bottom:12px;">
+            <button class="btn btn-primary" onclick="doLogin()" style="width:100%;padding:16px;font-size:15px;font-weight:700;border-radius:12px;text-transform:uppercase;letter-spacing:1px;">Sign In</button>
+            <button class="btn" onclick="doRegister()" style="width:100%;margin-top:12px;padding:16px;font-size:15px;background:transparent;border:2px solid rgba(255,215,0,0.3);color:#ffd700;border-radius:12px;">Create Account</button>
         </div>
     </div>
 
@@ -1641,7 +1943,7 @@
         <!-- Header -->
         <header class="header">
             <div class="header-logo">
-                <h1 style="text-shadow:0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.2);">GROWBLOCK</h1>
+                <h1 style="text-shadow:0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.2);font-size:18px;letter-spacing:1px;">GROWBLOCK</h1>
             </div>
             <div class="header-actions">
                 <div class="balance-display" onclick="cycleCurrency()">
@@ -1650,16 +1952,26 @@
                     <img id="currency-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAVUExURQAAANOYC/bMDP/xFf/+6aJ3Ev///6S9sAcAAAABdFJOUwBA5thmAAAAAWJLR0QGYWa4fQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAAd0SU1FB+gMAg8pOUklRhsAAACuSURBVCjPhZHJDcQgDEU9HWCkFAAoBcROB0wDQaL/VgazDcsh/2J48vIxAADYBVkfy00qA+3ub5G/KmgJ91UryBaxVwWY0lK7BlTtvoN8QsvNhmOUhElqtJVESlwkS2mwE2tsik9/xhjErxeQjNKDGFO8O8Bgjgkcjt5AOGeA8RmATEOcxjKZIKGXMJvAC4hbhl0zwgIwN1kB5efTf18ugW1j205Bj3cjv4GDFPwA8fZK6yGzgJ4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjQtMTItMDJUMTU6NDE6NTYrMDA6MDAyRZyhAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI0LTEyLTAyVDE1OjQxOjU2KzAwOjAwQxgkHQAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyNC0xMi0wMlQxNTo0MTo1NiswMDowMBQNBcIAAAAgdEVYdHNvZnR3YXJlAGh0dHBzOi8vaW1hZ2VtYWdpY2sub3JnvM8dnQAAABh0RVh0VGh1bWI6OkRvY3VtZW50OjpQYWdlcwAxp/+7LwAAABl0RVh0VGh1bWI6OkltYWdlOjpIZWlnaHQAMjExMjYf65IAAAAYdEVYdFRodW1iOjpJbWFnZTo6V2lkdGgANDA5NshLTHEAAAAZdEVYdFRodW1iOjpNaW1ldHlwZQBpbWFnZS9wbmc/slZOAAAAF3RFWHRUaHVtYjo6TVRpbWUAMTczMzE1NDExNtd3Q58AAAAOdEVYdFRodW1iOjpTaXplADBCyW8Y7QAAADV0RVh0VGh1bWI6OlVSSQBmaWxlOi8vL3RtcC90aHVtYmxyL2ltZzI4NDkyMDcxODQwNjI2OTQ1OTccswuPAAAAAElFTkSuQmCC" alt="">
                     <span id="balance-notification" class="balance-notification"></span>
                 </div>
-                <button class="btn btn-secondary btn-small" onclick="openDeposit()">Deposit</button>
-                <button class="btn btn-secondary btn-small" onclick="showWithdraw()">Withdraw</button>
-                <button class="btn btn-secondary btn-small" onclick="showTip()">Tip</button>
-                <button class="btn btn-secondary btn-small" onclick="doLogout()">Logout</button>
+                <button class="btn btn-secondary btn-small desktop-only" onclick="openDeposit()">Deposit</button>
+                <button class="btn btn-secondary btn-small desktop-only" onclick="showWithdraw()">Withdraw</button>
+                <button class="btn btn-secondary btn-small desktop-only" onclick="showTip()">Tip</button>
+                <button class="btn btn-danger btn-small" onclick="doLogout()">Logout</button>
+                <button class="btn btn-primary btn-small mobile-menu-btn" onclick="toggleMobileMenu()">Menu</button>
             </div>
         </header>
 
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="mobile-menu">
+            <button onclick="openDeposit(); toggleMobileMenu();">Deposit</button>
+            <button onclick="showWithdraw(); toggleMobileMenu();">Withdraw</button>
+            <button onclick="showTip(); toggleMobileMenu();">Tip</button>
+            <button onclick="toggleChat(); toggleMobileMenu();">Chat</button>
+            <button onclick="doLogout();">Logout</button>
+        </div>
+
         <!-- Main Layout -->
         <div class="main-layout">
-            <!-- Chat Sidebar -->
+            <!-- Chat Sidebar (Left Side) -->
             <aside class="chat-sidebar" id="chat-sidebar">
                 <div class="chat-header">
                     <h3>Live Chat</h3>
@@ -2181,6 +2493,19 @@
                 err.className = 'success';
             } catch (e) { err.textContent = 'Connection error'; }
         }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('mobile-menu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
 
         function doLogout() {
             token = username = null;
